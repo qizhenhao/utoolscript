@@ -1,49 +1,62 @@
-const { keyboard, Key, mouse, straightTo, centerOf } = require("@nut-tree/nut-js");
+const { keyboard, Key } = require("@nut-tree/nut-js");
 
+// 新增的通用操作函数
+async function pressEnter() {
+    await keyboard.pressKey(Key.Enter);
+    await keyboard.releaseKey(Key.Enter);
+    console.log('Simulated Enter');
+}
+
+async function typeText(text) {
+    await keyboard.type(text);
+    console.log(`Simulated typing: ${text}`);
+}
+
+async function pressCombo(...keys) {
+    await keyboard.pressKey(...keys);
+    await keyboard.releaseKey(...keys);
+    console.log(`Simulated ${keys.join(' + ')}`);
+}
+
+// 原有流程拆分为独立步骤
+async function configureTerminal() {
+    await typeText('configure terminal');
+    await pressEnter();
+}
+
+async function sendCtrlP() {
+    await pressCombo(Key.LeftControl, Key.P);
+    await pressEnter();
+    await delay(500);
+    console.log('Sent Ctrl + P');
+}
+
+async function enterPassword() {
+    await typeText('switch2024');
+    await pressEnter();
+    await delay(500);
+}
+
+async function enterBashShell() {
+    await typeText('bash');
+    await pressEnter();
+}
+
+async function gainRootAccess() {
+    await typeText('sudo su');
+    await pressEnter();
+}
+
+// 重构后的主函数
 async function simulateKeyboardInput() {
     try {
-        // 设置键盘延迟（可选）
-        keyboard.config.autoDelayMs = 50;
+        keyboard.config.autoDelayMs = 25;
         
-        // 配置终端
-        await keyboard.type('configure terminal');
-        console.log('Simulated typing: configure terminal');
-        // 模拟 Ctrl + P
-        await keyboard.pressKey(Key.LeftControl, Key.P);
-        await keyboard.releaseKey(Key.LeftControl, Key.P);
-        console.log('Simulated Ctrl + P');
-
-        // 模拟 Enter
-        await keyboard.pressKey(Key.Enter);
-        await keyboard.releaseKey(Key.Enter);
-        console.log('Simulated Enter');
-
-        // 模拟输入 'switch2024'
-        await keyboard.type('switch2024');
-        console.log('Simulated typing: switch2024');
-
-        // 模拟 Enter
-        await keyboard.pressKey(Key.Enter);
-        await keyboard.releaseKey(Key.Enter);
-        console.log('Simulated Enter');
-
-        // 模拟输入 'bash'
-        await keyboard.type('bash');
-        console.log('Simulated typing: bash');
-
-        // 模拟 Enter
-        await keyboard.pressKey(Key.Enter);
-        await keyboard.releaseKey(Key.Enter);
-        console.log('Simulated Enter');
-
-        // 模拟输入 'sudo su'
-        await keyboard.type('sudo su');
-        console.log('Simulated typing: sudo su');
-
-        // 模拟 Enter
-        await keyboard.pressKey(Key.Enter);
-        await keyboard.releaseKey(Key.Enter);
-        console.log('Simulated final Enter');
+        await configureTerminal();
+        await sendCtrlP();
+        await enterPassword();
+        await enterBashShell();
+        await gainRootAccess();
 
         console.log('Keyboard input simulation completed successfully.');
     } catch (err) {
@@ -51,5 +64,9 @@ async function simulateKeyboardInput() {
     }
 }
 
-// 执行函数
+// 保留原有 delay 函数
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 simulateKeyboardInput();
