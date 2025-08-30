@@ -7,10 +7,6 @@
 
 确保已安装 Node.js（建议 LTS 版本）：
 
-bash
-
-复制
-
 ```
 node -v  # 检查 Node.js 版本（建议 ≥ 16.x）
 npm -v   # 检查 npm 版本
@@ -24,10 +20,6 @@ npm -v   # 检查 npm 版本
 
 如果目录下有 `package.json`和 `package-lock.json`，直接运行：
 
-bash
-
-复制
-
 ```
 npm install
 ```
@@ -40,6 +32,6 @@ npm install
 
 > 前置：需要安装 utools 工具，在里面下载 自动化助手插件
 
-![image-20250830153112427](C:\Users\q01585\AppData\Roaming\Typora\typora-user-images\image-20250830153112427.png)![image-20250830153511048](C:\Users\q01585\AppData\Roaming\Typora\typora-user-images\image-20250830153511048.png)
+![image-20250830153112427](.\readmeImg\image-20250830153112427.png)![image-20250830153511048](.\readmeImg\image-20250830153511048.png)
 
 > 注意 linkmain 中的连接路径要和实际存放路径一致。
