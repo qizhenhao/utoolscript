@@ -32,6 +32,6 @@ npm install
 
 > 前置：需要安装 utools 工具，在里面下载 自动化助手插件
 
-![image-20250830153112427](.\readmeImg\image-20250830153112427.png)![image-20250830153511048](.\readmeImg\image-20250830153511048.png)
+![image-20250830153112427](./readmeImg/image-20250830153112427.png)![image-20250830153511048](./readmeImg/image-20250830153511048.png)
 
 > 注意 linkmain 中的连接路径要和实际存放路径一致。
